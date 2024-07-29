@@ -1,0 +1,40 @@
+<div class="chat-container">
+  <div *ngIf="currentStep === 1" class="login-container">
+    <h2>Connectez-vous</h2>
+    <input [(ngModel)]="username" placeholder="Entrez votre prénom" />
+    <button (click)="connect()">Se connecter</button>
+  </div>
+
+  <div *ngIf="currentStep === 2" class="user-list-container">
+    <h2>Utilisateurs connectés {{username}}</h2>
+    <p>Choisissez un utilisateur pour commencer le chat</p>
+    <ul>
+      <li *ngFor="let user of connectedUsers" (click)="selectUser(user)">
+        {{ user }}
+      </li>
+    </ul>
+    <button (click)="disconnect()">Déconnecter</button>
+  </div>
+
+  <div *ngIf="currentStep === 3" class="chat-window">
+    <div class="user-info">
+      <h3>Chat avec {{ selectedRecipient }}</h3>
+      <button (click)="disconnect()">Déconnecter</button>
+    </div>
+    <div class="messages">
+      <div *ngFor="let message of messages" class="message">
+        <div class="profile-pic">
+          <img src="assets\pictureprofile.png" alt="Profile Picture">
+        </div>
+        <div class="message-content">
+          <strong>{{ message.user }}</strong>
+          <p>{{ message.content }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="message-input">
+      <input [(ngModel)]="messageToSend" placeholder="Tapez votre message ici..." />
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+</div>
