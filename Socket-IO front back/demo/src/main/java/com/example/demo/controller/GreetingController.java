@@ -28,6 +28,7 @@ public class GreetingController {
 
 	@MessageMapping("/private-message")
 	public void sendPrivateMessage(@Payload PrivateMessage message, SimpMessageHeaderAccessor headerAccessor) {
+
 		String recipient = message.getRecipient();
 		String sender = message.getSender();
 
