@@ -61,9 +61,11 @@ export class ChatComponentComponent implements OnInit, OnDestroy {
     this.webSocketService.disconnect(this.username);
     this.isConnected = false;
     this.currentStep = 1;
+    window.location.reload();
   }
 
   ngOnDestroy() {
     this.webSocketService.disconnect(this.username);
+    
   }
 }
